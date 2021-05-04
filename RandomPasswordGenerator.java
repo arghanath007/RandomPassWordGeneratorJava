@@ -84,18 +84,22 @@ class RandomPasswordGenerator
 		}
 		else
 		{
-			
 			int randNumber;
-			if(upCase == 1)
+			if(upCase == 1 && loCase == 1 && digits == 1 && special == 1)
+			{
+				mixer=0;
+				return randomCharacter(upCase,loCase,digits,special,mixer);
+			}
+			else if(upCase == 1)
 			{
 				if(loCase == 1)
 				{
 					//26 + 26= 52;
 					int upLow=0;
 					randNumber=(int)(Math.random()*52);
-					if(randNumber <= 25 || randNumber >=31)
+					if(randNumber <=26)
 					{
-						upLow=randNumber+65;
+						upLow=randNumber+64;
 					}
 					else
 					{
@@ -103,22 +107,22 @@ class RandomPasswordGenerator
 					}
 					return (char)upLow;
 				}
-				if(digits == 1)
+				else if(digits == 1)
 				{
 					int upDig;
 					//26+9=35
 					randNumber=(int)(Math.random()*35);
 					if(randNumber <= 9)
 					{
-						upDig= randNumber;
+						upDig= randNumber + 48;
 					}
 					else
 					{
-						upDig=randNumber+87;
+						upDig=randNumber+88;
 					}
 					return (char) upDig;
 				}
-				if(special == 1)
+				else if(special == 1)
 				{
 					int upSpecial;
 					//26+ 14=40
@@ -129,7 +133,7 @@ class RandomPasswordGenerator
 					}
 					else
 					{
-						upSpecial= randNumber + 65;
+						upSpecial= randNumber + 83;
 					}
 					return (char)upSpecial;
 				}
@@ -152,7 +156,7 @@ class RandomPasswordGenerator
 					randNumber=(int)(Math.random()*35);
 					if(randNumber <= 9)
 					{
-						loDig= randNumber;
+						loDig= randNumber + 48;
 					}
 					else
 					{
@@ -160,7 +164,7 @@ class RandomPasswordGenerator
 					}
 					return (char) loDig;
 				}
-				if(special == 1)
+				else if(special == 1)
 				{
 					int loSpecial;
 					//26+ 14=40
@@ -194,11 +198,11 @@ class RandomPasswordGenerator
 					randNumber=(int)(Math.random()*23);
 					if(randNumber <= 9 )
 					{
-						digitSpecial= randNumber;
+						digitSpecial= randNumber + 48;
 					}
 					else
 					{
-						digitSpecial= randNumber + 23 ;
+						digitSpecial= randNumber + 25 ;
 					}
 					return (char)digitSpecial;
 				}
